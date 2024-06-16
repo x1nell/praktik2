@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
   async function fetchUsers(searchTerm = '') {
     try {
-      const response = await fetch(`/api/users?searchTerm=${searchTerm}`);
+      const response = await fetch(`/api/users?searchTerm=${encodeURIComponent(searchTerm)}`);
       if (!response.ok) {
         throw new Error('Ошибка загрузки данных');
       }
