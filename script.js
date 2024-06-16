@@ -2,10 +2,16 @@ const searchInput = document.getElementById('searchInput');
 const userList = document.getElementById('userList');
 
 async function searchUsers() {
-    const searchTerm = searchInput.value;
-    const response = await fetch(`/api/users?searchTerm=${searchTerm}`);
-    const data = await response.json();
-    displayUsers(data.result);
+    const searchTerm = searchInput.value.toLowerCase();
+    const mockData = {
+        result: [
+            { id: '1', name: 'Alice', avatarUrl: 'https://via.placeholder.com/50' },
+            { id: '2', name: 'Bob', avatarUrl: 'https://via.placeholder.com/50' },
+            { id: '3', name: 'Charlie', avatarUrl: 'https://via.placeholder.com/50' }
+        ]
+    };
+    const filteredUsers = mockData.result.filter(user => user.name.toLowerCase().includes(searchTerm));
+    displayUsers(filteredUsers);
 }
 
 function displayUsers(users) {
@@ -20,3 +26,6 @@ function displayUsers(users) {
         userList.appendChild(userDiv);
     });
 }
+
+document.addEventListener('DOMContentLoaded', searchUsers);
+МОКОВЫЙ ВАРИАНТ - ТАК КАК К АПИ НЕ ПОДКЛ
