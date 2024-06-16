@@ -32,4 +32,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const searchTerm = searchInput.value.trim();
     fetchUsers(searchTerm);
   });
+
+  fetchUsers();
 });
