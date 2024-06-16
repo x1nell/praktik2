@@ -1,23 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Админ-панель для бота</title>
-  <link rel="stylesheet" href="css/styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Поиск пользователей</title>
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-  <div class="container">
-    <header>
-      <h1>Админ-панель для бота</h1>
-      <input type="text" id="searchInput" placeholder="Введите имя пользователя...">
-    </header>
-    <main id="userList"></main>
-    <footer>
-      <p>&copy; 2024 Ваша компания. Все права защищены.</p>
-    </footer>
-  </div>
-  
-  <script src="script.js"></script>
+    <div class="container">
+        <input type="text" id="searchInput" placeholder="Поиск пользователей..." oninput="searchUsers()">
+        <div id="userList"></div>
+    </div>
+    <script src="script.js"></script>
 </body>
 </html>
