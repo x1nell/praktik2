@@ -1,37 +1,22 @@
-document.addEventListener('DOMContentLoaded', function() {
-  const userList = document.getElementById('userList');
-  const searchInput = document.getElementById('searchInput');
+const searchInput = document.getElementById('searchInput');
+const userList = document.getElementById('userList');
 
-  async function fetchUsers(searchTerm = '') {
-    try {
-      const response = await fetch(`/api/users?searchTerm=${encodeURIComponent(searchTerm)}`);
-      if (!response.ok) {
-        throw new Error('Ошибка загрузки данных');
-      }
-      const data = await response.json();
-      displayUsers(data.result);
-    } catch (error) {
-      console.error('Ошибка загрузки пользователей:', error);
-    }
-  }
+async function searchUsers() {
+    const searchTerm = searchInput.value;
+    const response = await fetch(`/api/users?searchTerm=${searchTerm}`);
+    const data = await response.json();
+    displayUsers(data.result);
+}
 
-  function displayUsers(users) {
+function displayUsers(users) {
     userList.innerHTML = '';
     users.forEach(user => {
-      const userCard = document.createElement('div');
-      userCard.classList.add('user-card');
-      userCard.innerHTML = `
-        <img src="${user.avatarUrl}" alt="Avatar">
-        <p>${user.name}</p>
-      `;
-      userList.appendChild(userCard);
+        const userDiv = document.createElement('div');
+        userDiv.className = 'user';
+        userDiv.innerHTML = `
+            <img src="${user.avatarUrl}" alt="${user.name}" width="50" height="50">
+            <span>${user.name}</span>
+        `;
+        userList.appendChild(userDiv);
     });
-  }
-
-  searchInput.addEventListener('input', function() {
-    const searchTerm = searchInput.value.trim();
-    fetchUsers(searchTerm);
-  });
-
-  fetchUsers();
-});
+}
